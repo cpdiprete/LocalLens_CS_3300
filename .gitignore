@@ -1,0 +1,24 @@
+# Build output
+target/
+demo.zip
+!.mvn/wrapper/maven-wrapper.properties
+
+# Local database
+data/
+
+# Secrets / local config
+.env
+.env.local
+
+# macOS
+.DS_Store
+
+# IDEs
+.idea/
+*.iml
+*.ipr
+*.iws
+.vscode/
+.classpath
+.project
+.settings/
