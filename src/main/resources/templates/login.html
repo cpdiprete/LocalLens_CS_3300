@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Log In')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main>
+    <div class="ll-auth-wrap">
+        <div class="ll-auth-card">
+            <h1>Welcome back</h1>
+            <p class="ll-sub">Log in to pick up where you left off.</p>
+
+            <div th:if="${param.registered}" class="alert alert-success py-2 small" role="alert">
+                Account created. Log in below.
+            </div>
+            <div th:if="${param.error}" class="alert alert-danger py-2 small" role="alert">
+                Incorrect username or password.
+            </div>
+            <div th:if="${param.expired}" class="alert alert-warning py-2 small" role="alert">
+                Your session timed out. Please log in again.
+            </div>
+
+            <form th:action="@{/login}" method="post" novalidate>
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" id="username" name="username" class="form-control"
+                           autocomplete="username" autofocus required>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" name="password" class="form-control"
+                           autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="btn btn-ll w-100">Log In</button>
+            </form>
+
+            <p class="ll-auth-switch mb-0">
+                Not a user? <a th:href="@{/signup}">Create an account</a>
+            </p>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+</body>
+</html>

@@ -1,3 +1,33 @@
 spring:
   application:
     name: demo
+
+  datasource:
+    url: jdbc:h2:file:./data/locallens
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+  thymeleaf:
+    cache: false
+
+  # The GCP and Spring AI starters are on the classpath for features the team has not
+  # built yet. Left disabled so the app boots locally without cloud credentials; turn
+  # these back on once a GCP project and service account are wired up.
+  cloud:
+    gcp:
+      core:
+        enabled: false
+      pubsub:
+        enabled: false
+      storage:
+        enabled: false
+
+  ai:
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY:not-configured}
