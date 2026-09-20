@@ -1,0 +1,211 @@
+:root {
+    --ll-ink: #12232e;
+    --ll-muted: #5b6b73;
+    --ll-bg: #f6f4ef;
+    --ll-surface: #ffffff;
+    --ll-primary: #0f766e;
+    --ll-primary-dark: #0b5c55;
+    --ll-accent: #e8833a;
+    --ll-border: #e4e0d7;
+}
+
+body {
+    background-color: var(--ll-bg);
+    color: var(--ll-ink);
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+/* ---- header ---- */
+
+.ll-header {
+    background-color: var(--ll-surface);
+    border-bottom: 1px solid var(--ll-border);
+}
+
+.ll-brand {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--ll-ink);
+    text-decoration: none;
+}
+
+.ll-brand:hover {
+    color: var(--ll-primary);
+}
+
+.ll-brand-mark {
+    color: var(--ll-primary);
+}
+
+/* ---- hero ---- */
+
+.ll-hero {
+    padding: 4.5rem 0 3.5rem;
+    background:
+        radial-gradient(circle at 18% 22%, rgba(15, 118, 110, 0.10) 0, transparent 42%),
+        radial-gradient(circle at 82% 12%, rgba(232, 131, 58, 0.12) 0, transparent 38%);
+}
+
+.ll-hero h1 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+.ll-hero .lead {
+    color: var(--ll-muted);
+    font-size: 1.15rem;
+    max-width: 34rem;
+}
+
+.ll-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--ll-primary);
+}
+
+/* ---- feature cards ---- */
+
+.ll-feature {
+    background-color: var(--ll-surface);
+    border: 1px solid var(--ll-border);
+    border-radius: 14px;
+    padding: 1.5rem;
+    height: 100%;
+}
+
+.ll-feature h3 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+}
+
+.ll-feature p {
+    color: var(--ll-muted);
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+.ll-feature-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9px;
+    display: grid;
+    place-items: center;
+    background-color: rgba(15, 118, 110, 0.10);
+    color: var(--ll-primary);
+    font-size: 1.15rem;
+    margin-bottom: 0.9rem;
+}
+
+/* ---- auth card ---- */
+
+.ll-auth-wrap {
+    display: grid;
+    place-items: center;
+    padding: 3rem 1rem;
+}
+
+.ll-auth-card {
+    background-color: var(--ll-surface);
+    border: 1px solid var(--ll-border);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(18, 35, 46, 0.04), 0 12px 32px rgba(18, 35, 46, 0.06);
+    padding: 2.25rem;
+    width: 100%;
+    max-width: 26rem;
+}
+
+.ll-auth-card h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.25rem;
+}
+
+.ll-auth-card .ll-sub {
+    color: var(--ll-muted);
+    font-size: 0.93rem;
+    margin-bottom: 1.5rem;
+}
+
+.ll-auth-switch {
+    text-align: center;
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--ll-border);
+    font-size: 0.92rem;
+    color: var(--ll-muted);
+}
+
+/* ---- form + button overrides ---- */
+
+.form-label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--ll-ink);
+}
+
+.form-control {
+    border-color: var(--ll-border);
+    padding: 0.6rem 0.8rem;
+}
+
+.form-control:focus {
+    border-color: var(--ll-primary);
+    box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+.btn-ll {
+    background-color: var(--ll-primary);
+    border: 1px solid var(--ll-primary);
+    color: #fff;
+    font-weight: 600;
+    padding: 0.6rem 1.35rem;
+    border-radius: 9px;
+}
+
+.btn-ll:hover,
+.btn-ll:focus {
+    background-color: var(--ll-primary-dark);
+    border-color: var(--ll-primary-dark);
+    color: #fff;
+}
+
+.btn-ll-outline {
+    background-color: transparent;
+    border: 1px solid var(--ll-border);
+    color: var(--ll-ink);
+    font-weight: 600;
+    padding: 0.6rem 1.35rem;
+    border-radius: 9px;
+}
+
+.btn-ll-outline:hover {
+    border-color: var(--ll-primary);
+    color: var(--ll-primary);
+}
+
+a {
+    color: var(--ll-primary);
+}
+
+/* ---- footer ---- */
+
+.ll-footer {
+    border-top: 1px solid var(--ll-border);
+    color: var(--ll-muted);
+    font-size: 0.85rem;
+    padding: 1.5rem 0;
+}

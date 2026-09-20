@@ -1,0 +1,30 @@
+# Test overrides. This file shadows src/main/resources/application.yaml on the test
+# classpath, so tests run against a throwaway in-memory database and never touch
+# ./data/locallens.
+spring:
+  application:
+    name: demo
+
+  datasource:
+    url: jdbc:h2:mem:locallens-test;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    open-in-view: false
+
+  cloud:
+    gcp:
+      core:
+        enabled: false
+      pubsub:
+        enabled: false
+      storage:
+        enabled: false
+
+  ai:
+    anthropic:
+      api-key: not-configured

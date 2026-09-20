@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(pageTitle)">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title th:text="|${pageTitle} · LocalLens|">LocalLens</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/locallens.css}">
+</head>
+
+<body>
+<header th:fragment="header" class="ll-header">
+    <div class="container d-flex align-items-center justify-content-between py-3">
+        <a class="ll-brand" th:href="@{/}">Local<span class="ll-brand-mark">Lens</span></a>
+        <nav class="d-flex align-items-center gap-2">
+            <th:block th:if="${#authorization.expression('isAuthenticated()')}">
+                <span class="text-secondary small d-none d-sm-inline me-2"
+                      th:text="${#authentication.name}">user</span>
+                <form th:action="@{/logout}" method="post" class="m-0">
+                    <button type="submit" class="btn btn-ll-outline btn-sm">Log Out</button>
+                </form>
+            </th:block>
+            <th:block th:unless="${#authorization.expression('isAuthenticated()')}">
+                <a class="btn btn-ll-outline btn-sm" th:href="@{/login}">Log In</a>
+                <a class="btn btn-ll btn-sm" th:href="@{/signup}">Sign Up</a>
+            </th:block>
+        </nav>
+    </div>
+</header>
+
+<footer th:fragment="footer" class="ll-footer">
+    <div class="container">
+        LocalLens &middot; CS 3300 Project 1
+    </div>
+</footer>
+</body>
+
+</html>

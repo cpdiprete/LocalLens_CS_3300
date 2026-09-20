@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Home')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main>
+    <div class="container py-5">
+        <p class="ll-eyebrow mb-2">Your dashboard</p>
+        <h1 class="mb-3">Signed in as <span th:text="${username}">user</span></h1>
+        <p class="text-secondary mb-4">
+            Authentication is wired up. The search experience lands here next.
+        </p>
+
+        <!--
+            Search / Explore Results / Filter go here.
+            This page is already behind the security filter chain, so whatever
+            replaces this block can assume an authenticated user and read the
+            current principal from the Authentication object.
+        -->
+        <div class="ll-feature" style="max-width: 34rem;">
+            <div class="ll-feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+            <h3>Select a search area</h3>
+            <p>Latitude, longitude and search radius inputs will go here.</p>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/layout :: head('Discover Nearby Places')}"></head>
+<body>
+
+<header th:replace="~{fragments/layout :: header}"></header>
+
+<main>
+    <section class="ll-hero">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-7">
+                    <p class="ll-eyebrow mb-2">Discover what&rsquo;s around you</p>
+                    <h1 class="mb-3">Find the interesting places near any point on the map.</h1>
+                    <p class="lead mb-4">
+                        Drop a location and a search radius, and LocalLens returns the restaurants,
+                        parks, attractions and more that sit within it &mdash; on an interactive map
+                        and as a list you can sort and filter.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a class="btn btn-ll" th:href="@{/signup}">Create an account</a>
+                        <a class="btn btn-ll-outline" th:href="@{/login}">I already have one</a>
+                    </div>
+                </div>
+                <div class="col-lg-5">
+                    <div class="ll-feature">
+                        <div class="ll-feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
+                        <h3>Search by coordinates</h3>
+                        <p>
+                            Enter a latitude, longitude and radius. LocalLens searches outward from
+                            that point and shows you how far each result sits from where you started.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container pb-5">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="ll-feature">
+                    <div class="ll-feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6 9 3Z"/><path d="M9 3v15M15 6v15"/></svg></div>
+                    <h3>Explore on a map</h3>
+                    <p>Every result is pinned on an interactive map alongside a readable list view.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ll-feature">
+                    <div class="ll-feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h18M6 12h12M10 19h4"/></svg></div>
+                    <h3>Filter by type</h3>
+                    <p>Narrow to restaurants, parks, attractions, hotels or hospitals in one click.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="ll-feature">
+                    <div class="ll-feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3.5 2.6 5.3 5.9.9-4.2 4.1 1 5.8-5.3-2.8-5.3 2.8 1-5.8L3.5 9.7l5.9-.9L12 3.5Z"/></svg></div>
+                    <h3>Keep what you find</h3>
+                    <p>Sign in to hold on to your searches and come back to the places you liked.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer th:replace="~{fragments/layout :: footer}"></footer>
+
+</body>
+</html>
