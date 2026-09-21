@@ -1,30 +1,83 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{fragments/layout :: head('Home')}"></head>
+<head th:replace="~{fragments/layout :: head('Search Nearby')}"></head>
 <body>
 
 <header th:replace="~{fragments/layout :: header}"></header>
 
-<main>
-    <div class="container py-5">
-        <p class="ll-eyebrow mb-2">Your dashboard</p>
-        <h1 class="mb-3">Signed in as <span th:text="${username}">user</span></h1>
-        <p class="text-secondary mb-4">
-            Authentication is wired up. The search experience lands here next.
-        </p>
+<main class="container py-5">
+    <p class="ll-eyebrow mb-2">Your dashboard</p>
+    <h1>Find places nearby</h1>
+    <p class="text-secondary">Signed in as <span th:text="${username}">user</span></p>
 
-        <!--
-            Search / Explore Results / Filter go here.
-            This page is already behind the security filter chain, so whatever
-            replaces this block can assume an authenticated user and read the
-            current principal from the Authentication object.
-        -->
-        <div class="ll-feature" style="max-width: 34rem;">
-            <div class="ll-feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="2.5"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></div>
-            <h3>Select a search area</h3>
-            <p>Latitude, longitude and search radius inputs will go here.</p>
+    <form th:action="@{/search}" method="get" class="ll-feature mb-4">
+        <p>Enter a location, or leave it blank and enter both coordinates.</p>
+        <div class="mb-3">
+            <label for="location" class="form-label">Location or address</label>
+            <input id="location" name="location" class="form-control" maxlength="200"
+                   th:value="${location}" placeholder="225 North Ave NW, Atlanta, GA">
         </div>
-    </div>
+        <div class="row g-3 mb-3">
+            <div class="col-md-6">
+                <label for="latitude" class="form-label">Latitude</label>
+                <input id="latitude" name="latitude" type="number" step="any" min="-90" max="90"
+                       class="form-control" th:value="${latitude}" placeholder="33.7756">
+            </div>
+            <div class="col-md-6">
+                <label for="longitude" class="form-label">Longitude</label>
+                <input id="longitude" name="longitude" type="number" step="any" min="-180" max="180"
+                       class="form-control" th:value="${longitude}" placeholder="-84.3963">
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="radius" class="form-label">Search radius (meters)</label>
+            <input id="radius" name="radius" type="number" min="1" max="50000" step="1" required
+                   class="form-control" th:value="${radius == null ? '1000' : radius}"
+                   aria-describedby="radiusHelp">
+            <div id="radiusHelp" class="form-text">1,000 meters = 1 kilometer. Maximum: 50,000 meters.</div>
+        </div>
+        <button type="submit" class="btn btn-ll">Search nearby</button>
+        <a th:href="@{/home}" class="btn btn-outline-secondary ms-2">Clear</a>
+    </form>
+
+    <div th:if="${searchError != null}" class="alert alert-danger" role="alert"
+         th:text="${searchError}"></div>
+
+    <section th:if="${result != null}" class="border rounded p-3" aria-labelledby="resultsHeading">
+        <h2 id="resultsHeading">Nearby places</h2>
+        <p>Search center: <strong th:text="${result.centerLabel()}"></strong></p>
+        <p class="text-secondary">Up to 20 places, ordered by straight-line distance.
+            This is a limited selection of nearby places.</p>
+        <p th:if="${result.places().isEmpty()}" class="alert alert-info">
+            No places were returned. Try a different location or a larger radius.
+        </p>
+        <div class="row g-3">
+            <div th:each="place : ${result.places()}" class="col-md-6">
+                <article class="ll-feature h-100">
+                    <h3 th:text="${place.name()}"></h3>
+                    <p th:text="${place.address()}"></p>
+                    <p><span th:text="${#numbers.formatDecimal(place.distanceMeters(), 1, 0)}"></span>
+                        meters away</p>
+                    <a th:href="${place.mapsUrl()}" target="_blank" rel="noopener noreferrer">
+                        Open in Google Maps
+                    </a>
+                    <p th:each="credit : ${place.attributions()}" class="small mt-2 mb-0">
+                        Data provider:
+                        <a th:if="${!credit.providerUri().isEmpty()}" th:href="${credit.providerUri()}"
+                           th:text="${credit.provider()}" target="_blank" rel="noopener noreferrer"></a>
+                        <span th:if="${credit.providerUri().isEmpty()}" th:text="${credit.provider()}"></span>
+                    </p>
+                </article>
+            </div>
+        </div>
+        <p class="mt-3 mb-0 small text-secondary">
+            Places data &copy;
+            <a href="https://www.openstreetmap.org/copyright"
+               target="_blank" rel="noopener noreferrer">OpenStreetMap contributors</a>,
+            served by <a href="https://www.geoapify.com/"
+                         target="_blank" rel="noopener noreferrer">Geoapify</a>.
+        </p>
+    </section>
 </main>
 
 <footer th:replace="~{fragments/layout :: footer}"></footer>
