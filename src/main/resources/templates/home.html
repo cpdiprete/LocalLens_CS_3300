@@ -15,18 +15,18 @@
         <div class="mb-3">
             <label for="location" class="form-label">Location or address</label>
             <input id="location" name="location" class="form-control" maxlength="200"
-                   th:value="${location}" placeholder="225 North Ave NW, Atlanta, GA">
+                   th:value="${location}" placeholder="Enter Location">
         </div>
         <div class="row g-3 mb-3">
             <div class="col-md-6">
                 <label for="latitude" class="form-label">Latitude</label>
                 <input id="latitude" name="latitude" type="number" step="any" min="-90" max="90"
-                       class="form-control" th:value="${latitude}" placeholder="33.7756">
+                       class="form-control" th:value="${latitude}" placeholder="Enter Latitude">
             </div>
             <div class="col-md-6">
                 <label for="longitude" class="form-label">Longitude</label>
                 <input id="longitude" name="longitude" type="number" step="any" min="-180" max="180"
-                       class="form-control" th:value="${longitude}" placeholder="-84.3963">
+                       class="form-control" th:value="${longitude}" placeholder="Enter Longitude">
             </div>
         </div>
         <div class="mb-3">
